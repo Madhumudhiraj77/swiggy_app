@@ -5,7 +5,7 @@ export const SWIGGY_API =
 //  export const SWIGGY_API_PROXY =
 //   `/proxy?url=${encodeURIComponent("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.387158&lng=78.545031&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")}`;
 
-export const SWIGGY_API_PROXY = `http://localhost:3001/proxy?url=${encodeURIComponent("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.387158&lng=78.545031&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")}`;
+export const SWIGGY_API_PROXY = `https://swiggy-app-clone.vercel.app/proxy?url=${encodeURIComponent("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.387158&lng=78.545031&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")}`;
 export const SWIGGY_API_MOBILE=
   "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=17.387158&lng=78.545031&carousel=true&third_party_vendor=1";
 
