@@ -4,6 +4,13 @@
       {
         "src": "server/index.js",
         "use": "@vercel/node"
+      },
+      {
+        "src": "vite.config.js",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist"
+        }
       }
     ],
     "routes": [
@@ -13,7 +20,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "/server/index.js"
+        "dest": "/dist/$1"
       }
     ]
   }

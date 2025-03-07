@@ -1,10 +1,19 @@
 import express from "express";
 import cors from "cors";
 import fetch from "node-fetch";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Fix for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serve static files (React app)
+app.use(express.static(path.join(__dirname, "../dist")));
 
 // Proxy route for Swiggy API
 app.get("/proxy", async (req, res) => {
@@ -46,12 +55,12 @@ app.get("/proxy", async (req, res) => {
   }
 });
 
-// Catch-all route for unmatched routes
-app.use((req, res) => {
-  res.status(404).json({ error: "Route not found" });
+// Serve React app for all other routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
-// Export the express app for Vercel serverless deployment
+// Export the Express app for Vercel
 export default app;
 
 
