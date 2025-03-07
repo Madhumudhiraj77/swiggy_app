@@ -14,13 +14,14 @@ const CategoriesRestaurants = () => {
   useEffect(() => {
     const fetchCatResData = async () => {
       try {
+        // `https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.387158&lng=78.545031&collection=${collectionId}&tags=${tags}&sortBy=&filters=&type=rcv2`
         let response = await fetch(
-          `${CATEGORY_RESTAURANTS_API}${collectionId}&tags=${tags}&sortBy=&filters=&type=rcv2`
+          `https://swiggy-app-phi.vercel.app/proxy?url=${encodeURIComponent(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.387158&lng=78.545031&collection=${collectionId}&tags=${tags}&sortBy=&filters=&type=rcv2`)}`
         );
         if (!response.ok) throw new Error("Error fetching data");
         let jsonResponse = await response.json();
         setShowShimmer(false)
-        console.log("jsonResponse",jsonResponse?.data?.cards)
+        console.log("jsonResponse madhu",jsonResponse?.data?.cards)
         setCatResData(jsonResponse?.data?.cards || []);
       } catch (error) {
         console.error("Error while fetching data:", error);
