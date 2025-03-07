@@ -12,7 +12,7 @@
         "dest": "/server/index.js"
       },
       {
-        "src": "/",
+        "src": "/(.*)",
         "dest": "/server/index.js"
       }
     ]
