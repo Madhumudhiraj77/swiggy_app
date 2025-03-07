@@ -16,7 +16,11 @@ const Body = () => {
     const fetchData = async () => {
       try {
         setLoading(true)
-        let response = await fetch(SWIGGY_API);
+        let response = await fetch(SWIGGY_API,{
+          headers: {
+            "Cache-Control": "no-cache",  // Disable caching
+          }
+        });
         if (!response.ok) throw new Error("Error fetching data");
         let jsonResponse = await response.json();
         setData(jsonResponse?.data?.cards || []);

@@ -16,7 +16,7 @@ const CategoriesRestaurants = () => {
       try {
         // `https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.387158&lng=78.545031&collection=${collectionId}&tags=${tags}&sortBy=&filters=&type=rcv2`
         let response = await fetch(
-          `https://swiggy-app-phi.vercel.app/proxy?url=${encodeURIComponent(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.387158&lng=78.545031&collection=${collectionId}&tags=${tags}&sortBy=&filters=&type=rcv2`)}`
+          `https://swiggy-app-clone.vercel.app/proxy?url=${encodeURIComponent(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.387158&lng=78.545031&collection=${collectionId}&tags=${tags}&sortBy=&filters=&type=rcv2`)}`
         );
         if (!response.ok) throw new Error("Error fetching data");
         let jsonResponse = await response.json();
