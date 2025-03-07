@@ -8,7 +8,7 @@ app.use(express.json());
 
 // Root route
 app.get("/", (req, res) => {
-  res.send("Express server is running. Use /proxy for Swiggy API calls.");
+  res.send("✅ Express server is running. Use /proxy for Swiggy API calls.");
 });
 
 // Proxy route for Swiggy API
@@ -21,37 +21,39 @@ app.get("/proxy", async (req, res) => {
 
   try {
     const decodedUrl = decodeURIComponent(url);
-    console.log("Decoded URL: ", decodedUrl);
+    console.log(`[Proxy Request] ${decodedUrl}`);
 
     const response = await fetch(decodedUrl, {
-      method: req.method,
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
       },
     });
 
     if (!response.ok) {
-      console.log("Fetch error: ", response.statusText);
+      console.error(`❌ Fetch error: ${response.status} - ${response.statusText}`);
       return res.status(response.status).json({ error: "Failed to fetch data" });
     }
 
     const data = await response.json();
-    res.status(response.status).json(data);
+    return res.json(data);
 
   } catch (error) {
-    console.error("Error in proxy server: ", error);
-    res.status(500).json({ error: "Failed to fetch Swiggy API", details: error.message });
+    console.error("❌ Error in proxy server:", error);
+    return res.status(500).json({ error: "Failed to fetch Swiggy API", details: error.message });
   }
 });
 
-// Catch-all route for all other requests
-app.get("*", (req, res) => {
-  res.status(404).send("Route not found");
+// Catch-all route
+app.use((req, res) => {
+  res.status(404).json({ error: "Route not found" });
 });
 
+// Start server
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Express server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 
 
 // import express from "express";
