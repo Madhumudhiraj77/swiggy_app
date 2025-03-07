@@ -13,7 +13,7 @@ const SearchRestaurantItemCard = () => {
     const fetchSelectedSearch = async() =>{
       try{
         const fullUrl = `${SEARCH_RESTAURANT_CARD_API}${encodeURIComponent(query)}&trackingId=null&submitAction=STORED_SEARCH&queryUniqueId=null&selectedPLTab=RESTAURANT`;
-        let response = await fetch(`https://swiggy-app-clone.vercel.app/proxy?url=${encodeURIComponent(fullUrl)}`)
+        let response = await fetch(`http://localhost:3001/proxy?url=${encodeURIComponent(fullUrl)}`)
         let jsonResponse = await response.json()
         console.log("jsonResponse",jsonResponse)
         setResData(jsonResponse?.data.cards[0]?.groupedCard?.cardGroupMap?.RESTAURANT?.cards)
