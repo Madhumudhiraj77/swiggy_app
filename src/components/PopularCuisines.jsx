@@ -26,7 +26,7 @@ const PopularCuisines = ({ setTextInput }) => {
   const { header, imageGridCards } = cuisinesCarosal[1]?.card?.card || {};
   const carosalImages = imageGridCards?.info;
   const title = header?.title || "Popular Cuisines";
-  console.log("cuisinesCarosal", cuisinesCarosal);
+  // console.log("cuisinesCarosal", cuisinesCarosal);
 
   const handleLinkClick = (text) => {
     setTextInput(text); // Call setTextInput with the link text when the link is clicked

@@ -21,7 +21,7 @@ const CategoriesRestaurants = () => {
         if (!response.ok) throw new Error("Error fetching data");
         let jsonResponse = await response.json();
         setShowShimmer(false);
-        console.log("jsonResponse madhu", jsonResponse?.data?.cards);
+        // console.log("jsonResponse madhu",jsonResponse?.data?.cards)
         setCatResData(jsonResponse?.data?.cards || []);
       } catch (error) {
         console.error("Error while fetching data:", error);
@@ -38,7 +38,7 @@ const CategoriesRestaurants = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
     );
   }, [catResData]);
-  console.log("catResData", catResData);
+  // console.log("catResData",catResData)
 
   if (showShimmer) return <Shimmer />;
   if (catResData.length === 0) return <PageNotFound />;
