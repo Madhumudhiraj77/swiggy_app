@@ -25,8 +25,7 @@ const SearchRestaurantItemCard = () => {
   },[searchParams])
 
   return (
-    <div className="max-w-[1200px] mx-auto p-5">
-      <h1>Restaurant Search Results for: {query} {resId}</h1>
+    <div className="max-w-[1200px] mx-auto">
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {resData.map((each) => {
           const { areaName, name, id } = each?.card?.card?.info || {};

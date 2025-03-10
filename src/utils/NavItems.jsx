@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { icon: <FiSearch />, name: "Search",path: "/search" },
   { icon: <BiSolidOffer />, name: "Offers", sup: "New" },
   { icon: <IoHelpBuoyOutline />, name: "Help", path: "/support" },
-  { icon: <FaRegUser />, name: "Sign In" },
+  { icon: <FaRegUser />, name: "Madhu",path:'/profile' },
   { icon: <FiShoppingCart />, name: "Cart", path: "/cart" },
 ];
 

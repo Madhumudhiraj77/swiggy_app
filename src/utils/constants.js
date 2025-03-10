@@ -47,7 +47,8 @@ export const ROUTES_NAMES = {
   ORDER_CONFIRMED: "/orderConfirmed",
   CATEGORY_COLLECTIONS: "/collections/:collectionId",
   SEARCH:'/search',
-  SEARCH_RESTAURANT_DETAILS : '/search/resItem'
+  SEARCH_RESTAURANT_DETAILS : '/search/resItem',
+  PROFILE:'/profile'
 };
 
 export const colors = [

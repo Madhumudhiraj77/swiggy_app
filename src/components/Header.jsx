@@ -53,6 +53,22 @@ const Header = () => {
         >
           <div className="p-4">
             <IoMdClose size={30} onClick={hideSideMenu} />
+            <nav className="md:hidden block list-none gap-6 ml-auto font-bold lg:text-[16px] md:text-[14px]">
+            {NAV_ITEMS.map(({ icon, name, sup, path }, index) => (
+              <Link to={path} key={index}  onClick={hideSideMenu}>
+                <li className=" h-full flex gap-2 items-center hover:text-[#ff5200] cursor-pointer py-3">
+                  <span className="text-md font-bold">{icon}</span>
+                  <span>{name}</span>
+                  {name === "Cart" && totalCartItems > 0 && (
+                    <sup className="text-[#ffa700]">{totalCartItems}</sup>
+                  )}
+                  {sup && name !== "Cart" && (
+                    <sup className="text-[#ffa700] ">{sup}</sup>
+                  )}
+                </li>
+              </Link>
+            ))}
+          </nav>
           </div>
         </div>
       </div>

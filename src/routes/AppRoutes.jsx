@@ -4,6 +4,7 @@ import { ROUTES_NAMES } from "../utils/constants";
 import Shimmer from "../components/Shimmer";
 import HomePage from "../components/HomePage";
 import ShimmerRestaurantMenu from "../components/ShimmerRestaurantMenu";
+import Profile from "../components/Profile";
 
 const Help = lazy(() => import("../components/Help"));
 const Body = lazy(() => import("../components/Body"));
@@ -57,6 +58,9 @@ const AppRoutes = () => {
               </Suspense>
             }
           />
+
+          <Route path={ROUTES_NAMES.PROFILE} element={<Profile />} />
+
           <Route
             path={ROUTES_NAMES.CART}
             element={
