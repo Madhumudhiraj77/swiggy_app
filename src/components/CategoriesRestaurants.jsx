@@ -10,18 +10,18 @@ const CategoriesRestaurants = () => {
   const [searchParams] = useSearchParams(); // Extract the collection ID
   const tags = searchParams.get("tags");
   const [catResData, setCatResData] = useState([]);
-  const [showShimmer,setShowShimmer] = useState(true)
+  const [showShimmer, setShowShimmer] = useState(true);
   useEffect(() => {
     const fetchCatResData = async () => {
       try {
         // `https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.387158&lng=78.545031&collection=${collectionId}&tags=${tags}&sortBy=&filters=&type=rcv2`
         let response = await fetch(
-          `https://swiggy-app-clone.vercel.app/proxy?url=${encodeURIComponent(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.387158&lng=78.545031&collection=${collectionId}&tags=${tags}&sortBy=&filters=&type=rcv2`)}`
+          `https://swiggy-app-clone.vercel.app/proxy?url=${encodeURIComponent(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.387158&lng=78.545031&collection=${collectionId}&tags=${tags}&sortBy=&filters=&type=rcv2`)}`,
         );
         if (!response.ok) throw new Error("Error fetching data");
         let jsonResponse = await response.json();
-        setShowShimmer(false)
-        console.log("jsonResponse madhu",jsonResponse?.data?.cards)
+        setShowShimmer(false);
+        console.log("jsonResponse madhu", jsonResponse?.data?.cards);
         setCatResData(jsonResponse?.data?.cards || []);
       } catch (error) {
         console.error("Error while fetching data:", error);
@@ -31,24 +31,22 @@ const CategoriesRestaurants = () => {
     fetchCatResData();
   }, [collectionId, searchParams.toString()]);
 
-  const filteredRestaurants = useMemo(()=>{
-    return  catResData?.filter(
+  const filteredRestaurants = useMemo(() => {
+    return catResData?.filter(
       (each) =>
         each?.card?.card["@type"] ===
-        "type.googleapis.com/swiggy.presentation.food.v2.Restaurant"
+        "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
     );
-  },[catResData])
-  console.log("catResData",catResData)
+  }, [catResData]);
+  console.log("catResData", catResData);
 
-  if (showShimmer) return <Shimmer/>
-  if(catResData.length === 0) return <PageNotFound/>
+  if (showShimmer) return <Shimmer />;
+  if (catResData.length === 0) return <PageNotFound />;
   const {
     title = "",
     description = "",
     count = 0,
   } = catResData[0]?.card?.card || {};
-
-
 
   return (
     <div className="max-w-[1200px] mx-auto p-5">

@@ -44,18 +44,21 @@ const PopularCuisines = ({ setTextInput }) => {
         }}
       >
         {carosalImages?.map((each) => (
-          <div key={each.id} className=" shrink-0 " onClick={() => handleLinkClick(each.action.link.slice(23))}>
+          <div
+            key={each.id}
+            className=" shrink-0 "
+            onClick={() => handleLinkClick(each.action.link.slice(23))}
+          >
             {/* <Link
               to={`${ROUTES_NAMES.SEARCH_RESTAURANT_DETAILS.replace(
                 ":resId",
                 each.id
               )}?query= ${each.action.link.slice(23)}`} >*/}
-              
-            
-              <img
-                className="w-[100px] h-auto object-cover mx-2"
-                src={SEARCH_CUISINES_IMAGES_API + each.imageId}
-              />
+
+            <img
+              className="w-[100px] h-auto object-cover mx-2"
+              src={SEARCH_CUISINES_IMAGES_API + each.imageId}
+            />
             {/* </Link> */}
           </div>
         ))}

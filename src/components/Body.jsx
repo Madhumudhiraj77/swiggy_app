@@ -11,15 +11,15 @@ const Body = () => {
   const isMobile = useDeviceType();
 
   const [data, setData] = useState([]);
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true)
-        let response = await fetch(SWIGGY_API,{
+        setLoading(true);
+        let response = await fetch(SWIGGY_API, {
           headers: {
-            "Cache-Control": "no-cache",  // Disable caching
-          }
+            "Cache-Control": "no-cache", // Disable caching
+          },
         });
         if (!response.ok) throw new Error("Error fetching data");
         let jsonResponse = await response.json();
@@ -38,15 +38,15 @@ const Body = () => {
         // setData(jsonResponse?.data?.cards || []);
       } catch (error) {
         console.error("Error while fetching data:", error);
-      } finally{
-        setLoading(false)
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  if(loading) return <Shimmer/>
+  if (loading) return <Shimmer />;
 
   return (
     <div className="max-w-[1200px] mx-auto p-5">

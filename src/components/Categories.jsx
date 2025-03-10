@@ -26,7 +26,7 @@ const Categories = ({ categoriesData }) => {
 
   const maxScrollPosition = 140 * remaining;
   // console.log("scrollPosition", scrollPosition,window.innerWidth,maxScrollPosition,remaining);
- return (
+  return (
     <>
       <div className=" md:flex justify-between items-center">
         <div className="font-extrabold text-[16px] md:text-[20px] mb-4">

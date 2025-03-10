@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../slices/cartSlice";
+import { Bounce, toast } from "react-toastify";
 
 const RestaurantItem = ({ resItem, customBgColor }) => {
   // console.log("resItem",resItem)
@@ -21,10 +22,17 @@ const RestaurantItem = ({ resItem, customBgColor }) => {
   const cartItem = cartItems.find((item) => item.resItem.info.id === id);
   const itemCount = cartItem ? cartItem.count : 0;
 
-
   // Add item to cart
   const handleAdd = () => {
     dispatch(addItem({ resItem }));
+    toast.success(`${resItem?.name || "Item"} added to cart! 🛒`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
 
   // Remove item from cart
@@ -32,6 +40,14 @@ const RestaurantItem = ({ resItem, customBgColor }) => {
     if (itemCount > 0) {
       dispatch(removeItem({ resItem }));
     }
+    toast.success(`${resItem?.name || "Item"} removed from cart! 🛒`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
 
   return (
@@ -110,7 +126,6 @@ const RestaurantItem = ({ resItem, customBgColor }) => {
 //Higher order component
 export const ItemCostRestaurantItem = (RestaurantItem) => {
   return ({ resItem, customBgColor, price, count }) => {
-    console.log("price", price);
     return (
       <div>
         <RestaurantItem {...{ resItem, customBgColor }} />
@@ -121,5 +136,3 @@ export const ItemCostRestaurantItem = (RestaurantItem) => {
 };
 
 export default RestaurantItem;
-
-

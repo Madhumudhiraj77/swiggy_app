@@ -13,12 +13,10 @@ const OrderConfirmed = () => {
     dispatch(emptyItems());
   }, [dispatch]);
 
-
   const handleNavigate = () => {
     navigate(ROUTES_NAMES.HOME);
   };
 
-  
   return (
     <div className="flex flex-col items-center justify-center m-auto text-center gap-4 py-5 md:w-8/12 lg:w-6/12">
       <img

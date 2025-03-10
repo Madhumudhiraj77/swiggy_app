@@ -11,13 +11,14 @@ const Body = lazy(() => import("../components/Body"));
 const RestaurantMenu = lazy(() => import("../components/RestaurantMenu"));
 const Cart = lazy(() => import("../components/Cart"));
 const OrderConfirmed = lazy(() => import("../components/OrderConfirmed"));
-const CategoriesRestaurants = lazy(() =>
-  import("../components/CategoriesRestaurants")
+const CategoriesRestaurants = lazy(
+  () => import("../components/CategoriesRestaurants"),
 );
 const SearchCuisines = lazy(() => import("../components/SearchCuisines"));
-const SearchRestaurantItemCard = lazy(() =>
-  import("../components/SearchRestaurantItemCard")
+const SearchRestaurantItemCard = lazy(
+  () => import("../components/SearchRestaurantItemCard"),
 );
+const Offers = lazy(() => import("../components/Offers"));
 
 const AppRoutes = () => {
   return (
@@ -60,6 +61,15 @@ const AppRoutes = () => {
           />
 
           <Route path={ROUTES_NAMES.PROFILE} element={<Profile />} />
+
+          <Route
+            path={ROUTES_NAMES.OFFERS}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <Offers />
+              </Suspense>
+            }
+          />
 
           <Route
             path={ROUTES_NAMES.CART}

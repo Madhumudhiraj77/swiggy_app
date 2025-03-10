@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { RxCaretDown } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
-import {ROUTES_NAMES } from "../utils/constants";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { ROUTES_NAMES } from "../utils/constants";
 import logo from "../assets/swiggy-logo.png";
 import { useSelector } from "react-redux";
 import NAV_ITEMS from "../utils/NavItems";
@@ -54,21 +54,30 @@ const Header = () => {
           <div className="p-4">
             <IoMdClose size={30} onClick={hideSideMenu} />
             <nav className="md:hidden block list-none gap-6 ml-auto font-bold lg:text-[16px] md:text-[14px]">
-            {NAV_ITEMS.map(({ icon, name, sup, path }, index) => (
-              <Link to={path} key={index}  onClick={hideSideMenu}>
-                <li className=" h-full flex gap-2 items-center hover:text-[#ff5200] cursor-pointer py-3">
-                  <span className="text-md font-bold">{icon}</span>
-                  <span>{name}</span>
-                  {name === "Cart" && totalCartItems > 0 && (
-                    <sup className="text-[#ffa700]">{totalCartItems}</sup>
-                  )}
-                  {sup && name !== "Cart" && (
-                    <sup className="text-[#ffa700] ">{sup}</sup>
-                  )}
-                </li>
-              </Link>
-            ))}
-          </nav>
+              {NAV_ITEMS.map(({ icon, name, sup, path }, index) => (
+                <NavLink
+                  to={path}
+                  key={index}
+                  onClick={hideSideMenu}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "h-full flex gap-2 items-center text-[#ff5200]"
+                      : "h-full flex gap-2 items-center"
+                  }
+                >
+                  <li className="flex gap-2 items-center hover:text-[#ff5200] cursor-pointer py-3">
+                    <span className="text-md font-bold">{icon}</span>
+                    <span>{name}</span>
+                    {name === "Cart" && totalCartItems > 0 && (
+                      <sup className="text-[#ffa700]">{totalCartItems}</sup>
+                    )}
+                    {sup && name !== "Cart" && (
+                      <sup className="text-[#ffa700] ">{sup}</sup>
+                    )}
+                  </li>
+                </NavLink>
+              ))}
+            </nav>
           </div>
         </div>
       </div>
@@ -89,8 +98,16 @@ const Header = () => {
           </div>
           <nav className="hidden md:flex list-none gap-6 ml-auto font-bold lg:text-[16px] md:text-[14px]">
             {NAV_ITEMS.map(({ icon, name, sup, path }, index) => (
-              <Link to={path} key={index}>
-                <li className=" h-full flex gap-2 items-center hover:text-[#ff5200] cursor-pointer">
+              <NavLink
+                to={path}
+                key={index}
+                className={({ isActive }) =>
+                  isActive
+                    ? "h-full flex gap-2 items-center text-[#ff5200]"
+                    : "h-full flex gap-2 items-center"
+                }
+              >
+                <li className="flex gap-2 items-center">
                   <span className="text-xl font-bold">{icon}</span>
                   <span>{name}</span>
                   {name === "Cart" && totalCartItems > 0 && (
@@ -100,7 +117,7 @@ const Header = () => {
                     <sup className="text-[#ffa700] ">{sup}</sup>
                   )}
                 </li>
-              </Link>
+              </NavLink>
             ))}
           </nav>
         </div>

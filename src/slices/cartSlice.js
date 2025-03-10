@@ -10,7 +10,7 @@ const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const existingItem = state.items.find(
-        (item) => item.resItem.info.id === action.payload.resItem.info.id
+        (item) => item.resItem.info.id === action.payload.resItem.info.id,
       );
       if (existingItem) {
         existingItem.count += 1; // Increase count
@@ -26,7 +26,7 @@ const cartSlice = createSlice({
 
     removeItem: (state, action) => {
       const existingItem = state.items.find(
-        (item) => item.resItem.info.id === action.payload.resItem.info.id
+        (item) => item.resItem.info.id === action.payload.resItem.info.id,
       );
 
       if (existingItem) {
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
           existingItem.count -= 1; // Decrease count
         } else {
           state.items = state.items.filter(
-            (item) => item.resItem.info.id !== action.payload.resItem.info.id
+            (item) => item.resItem.info.id !== action.payload.resItem.info.id,
           );
         }
         state.totalItemsBill -= price;

@@ -5,24 +5,29 @@ import { SEARCH_RESTAURANT_CARD_API } from "../utils/constants";
 
 const SearchRestaurantItemCard = () => {
   const [searchParams] = useSearchParams();
-  const {resId} = useParams()
+  const { resId } = useParams();
   const query = searchParams.get("query");
-  const[resData,setResData] = useState([])
-  
-  useEffect(()=>{
-    const fetchSelectedSearch = async() =>{
-      try{
+  const [resData, setResData] = useState([]);
+
+  useEffect(() => {
+    const fetchSelectedSearch = async () => {
+      try {
         const fullUrl = `${SEARCH_RESTAURANT_CARD_API}${encodeURIComponent(query)}&trackingId=null&submitAction=STORED_SEARCH&queryUniqueId=null&selectedPLTab=RESTAURANT`;
-        let response = await fetch(`https://swiggy-app-clone.vercel.app/proxy?url=${encodeURIComponent(fullUrl)}`)
-        let jsonResponse = await response.json()
-        console.log("jsonResponse",jsonResponse)
-        setResData(jsonResponse?.data.cards[0]?.groupedCard?.cardGroupMap?.RESTAURANT?.cards)
-      }catch(err){
-        console.log("Error while fetching selected search item",err)
+        let response = await fetch(
+          `https://swiggy-app-clone.vercel.app/proxy?url=${encodeURIComponent(fullUrl)}`,
+        );
+        let jsonResponse = await response.json();
+        // console.log("jsonResponse",jsonResponse)
+        setResData(
+          jsonResponse?.data.cards[0]?.groupedCard?.cardGroupMap?.RESTAURANT
+            ?.cards,
+        );
+      } catch (err) {
+        console.log("Error while fetching selected search item", err);
       }
-    }
-    fetchSelectedSearch()
-  },[searchParams])
+    };
+    fetchSelectedSearch();
+  }, [searchParams]);
 
   return (
     <div className="max-w-[1200px] mx-auto">
@@ -35,7 +40,7 @@ const SearchRestaurantItemCard = () => {
             </Link>
           );
         })}
-        </div>
+      </div>
     </div>
   );
 };

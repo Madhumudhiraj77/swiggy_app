@@ -26,7 +26,7 @@ const RestaurantMenu = () => {
 
     fetchRestaurantData();
   }, [resId]);
-  if (resData.length === 0) return <ShimmerRestaurantMenu/>
+  if (resData.length === 0) return <ShimmerRestaurantMenu />;
 
   const { text } = resData[0]?.card?.card || {};
   const {
@@ -43,7 +43,7 @@ const RestaurantMenu = () => {
   const categoryData = regularCards.filter(
     (each) =>
       each?.card?.card["@type"] ===
-      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory",
   );
 
   // console.log("categoryData", categoryData);
@@ -51,7 +51,7 @@ const RestaurantMenu = () => {
     resData[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
       (each) =>
         each?.card?.card["@type"] ===
-        "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+        "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory",
     );
 
   // console.log("nestedCards", nestedCards);

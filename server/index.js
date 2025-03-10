@@ -22,13 +22,18 @@ app.get("/proxy", async (req, res) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
       },
     });
 
     if (!response.ok) {
-      console.error(`❌ Fetch error: ${response.status} - ${response.statusText}`);
-      return res.status(response.status).json({ error: "Failed to fetch data", details: response.statusText });
+      console.error(
+        `❌ Fetch error: ${response.status} - ${response.statusText}`,
+      );
+      return res
+        .status(response.status)
+        .json({ error: "Failed to fetch data", details: response.statusText });
     }
 
     const data = await response.json();
@@ -39,10 +44,11 @@ app.get("/proxy", async (req, res) => {
     res.setHeader("Expires", "0");
 
     return res.json(data);
-
   } catch (error) {
     console.error("❌ Error in proxy server:", error);
-    return res.status(500).json({ error: "Failed to fetch Swiggy API", details: error.message });
+    return res
+      .status(500)
+      .json({ error: "Failed to fetch Swiggy API", details: error.message });
   }
 });
 
@@ -53,7 +59,6 @@ app.use((req, res) => {
 
 // Export the express app for Vercel serverless deployment
 export default app;
-
 
 // // Local working
 // import express from "express";

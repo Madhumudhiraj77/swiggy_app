@@ -16,10 +16,10 @@ const PageNotFound = () => {
         alt="Not found"
         loading="lazy"
       />
-      <h1 className="font-bold text-2xl">Page not found
-      </h1>
+      <h1 className="font-bold text-2xl">Page not found</h1>
       <p className="text-gray-600">
-      Uh-oh! Looks like the page you are trying to access, doesn't exist. Please start afresh.
+        Uh-oh! Looks like the page you are trying to access, doesn't exist.
+        Please start afresh.
       </p>
       <button
         onClick={handleNavigate}

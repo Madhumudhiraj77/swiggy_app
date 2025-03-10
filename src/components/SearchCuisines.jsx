@@ -14,10 +14,9 @@ const SearchCuisines = () => {
   const navigate = useNavigate();
   const [textInput, setTextInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-    const[showSearchResults,setShowSearchResults] = useState(true)
-    const [showRes,setShowRes] = useState(false)
+  const [showSearchResults, setShowSearchResults] = useState(true);
+  const [showRes, setShowRes] = useState(false);
   const debouncedTextInput = useDebounce(textInput.trim(), 500);
-  console.log("debouncedTextInput", debouncedTextInput.length);
 
   //Debounce using useDebounce
   useEffect(() => {
@@ -34,10 +33,10 @@ const SearchCuisines = () => {
       if (!suggestionsResponse.ok)
         throw new Error("Error fetching search suggestions results data");
       const suggestionsJsonData = await suggestionsResponse.json();
-      console.log(
-        "suggestionsJsonData",
-        suggestionsJsonData?.data?.suggestions
-      );
+      // console.log(
+      //   "suggestionsJsonData",
+      //   suggestionsJsonData?.data?.suggestions
+      // );
       setSearchResults(suggestionsJsonData?.data?.suggestions || []);
     } catch (err) {
       console.log("Error while fetching search suggestions results data", err);
@@ -46,7 +45,6 @@ const SearchCuisines = () => {
 
   const handleInput = (e) => {
     setTextInput(e.target.value);
-    
   };
 
   const handleClearSearch = () => {
@@ -55,16 +53,16 @@ const SearchCuisines = () => {
   };
 
   const handleLinkClick = (text) => {
-    setTextInput(text); 
+    setTextInput(text);
     setSearchResults([]);
-    setShowSearchResults(false)
-    setShowRes(true)
-  }
+    setShowSearchResults(false);
+    setShowRes(true);
+  };
 
-  const handleFocus = () =>{
-  setShowSearchResults(true)
-  setShowRes(false)
-  }
+  const handleFocus = () => {
+    setShowSearchResults(true);
+    setShowRes(false);
+  };
   return (
     <div className="w-11/12 md:w-9/12 lg:w-7/12 mx-auto mt-6">
       <div className="flex my-15 items-center border border-gray-400 rounded-xl">
@@ -86,37 +84,38 @@ const SearchCuisines = () => {
         </button>
       </div>
 
-
-      {textInput.length === 0 && <PopularCuisines setTextInput={setTextInput}/>}
+      {textInput.length === 0 && (
+        <PopularCuisines setTextInput={setTextInput} />
+      )}
       {showRes && <Outlet />}
 
-    {showSearchResults &&  <div>
-        {searchResults.length > 0 &&
-          searchResults.map((each,index) => (
-            <Link
-            to={`${ROUTES_NAMES.SEARCH_RESTAURANT_DETAILS}?query=${encodeURIComponent(each.text)}`}
-            // to={`/search/results?query=${encodeURIComponent(each.text)}&ctaLink=${encodeURIComponent(each.cta.link)}`}
-            key={index}
-              onClick={()=>handleLinkClick(each.text)}
-            >
-              <div className="w-full flex items-center gap-3 my-2  py-2 hover:bg-[#f2f6fc]">
-                <img
-                  src={AUTO_SUGGEST_SEARCH_IMAGES_API + each.cloudinaryId}
-                  className="w-[70px] h-[70px] object-cover rounded-md"
-                  alt={"resImage"}
-                />
-                <div>
-                  <h1 className="font-medium text-lg">{each.text}</h1>
-                  <p className="font-medium text-[#686b78] text-sm">
-                    {each.type}
-                  </p>
+      {showSearchResults && (
+        <div>
+          {searchResults.length > 0 &&
+            searchResults.map((each, index) => (
+              <Link
+                to={`${ROUTES_NAMES.SEARCH_RESTAURANT_DETAILS}?query=${encodeURIComponent(each.text)}`}
+                // to={`/search/results?query=${encodeURIComponent(each.text)}&ctaLink=${encodeURIComponent(each.cta.link)}`}
+                key={index}
+                onClick={() => handleLinkClick(each.text)}
+              >
+                <div className="w-full flex items-center gap-3 my-2  py-2 hover:bg-[#f2f6fc]">
+                  <img
+                    src={AUTO_SUGGEST_SEARCH_IMAGES_API + each.cloudinaryId}
+                    className="w-[70px] h-[70px] object-cover rounded-md"
+                    alt={"resImage"}
+                  />
+                  <div>
+                    <h1 className="font-medium text-lg">{each.text}</h1>
+                    <p className="font-medium text-[#686b78] text-sm">
+                      {each.type}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-
-      </div>
-      }
+              </Link>
+            ))}
+        </div>
+      )}
     </div>
   );
 };

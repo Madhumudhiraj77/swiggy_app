@@ -12,9 +12,7 @@ const RestaurantCategory = ({
   const { title, itemCards } = resCategoryData;
 
   const handleAccordion = () => {
-
     showItems ? setAllCollapse() : setExpandedIndex();
-
   };
 
   return (
@@ -24,7 +22,7 @@ const RestaurantCategory = ({
         onClick={handleAccordion}
       >
         <h1 className="font-bold text-[18px]">
-          {title} ({itemCards?.length || 0 })
+          {title} ({itemCards?.length || 0})
         </h1>
         <button>
           {!showItems ? (
@@ -35,7 +33,8 @@ const RestaurantCategory = ({
         </button>
       </div>
 
-      {showItems && itemCards?.length > 0 && 
+      {showItems &&
+        itemCards?.length > 0 &&
         itemCards.map((eachItem, index, array) => (
           <React.Fragment key={eachItem.card.id}>
             <RestaurantItem

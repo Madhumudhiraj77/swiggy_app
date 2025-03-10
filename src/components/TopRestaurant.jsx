@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const TopRestaurant = ({ topRestaurantData }) => {
   const { gridElements, header } = topRestaurantData;
   const [itemsPerView, setItemsPerView] = useState(
-    window.screen.width >= 768 && window.screen.width < 1024 ? 3 : 4
+    window.screen.width >= 768 && window.screen.width < 1024 ? 3 : 4,
   );
   const [slide, setSlide] = useState(0);
   const totalItems = gridElements.infoWithStyle.restaurants.length;
@@ -38,10 +38,7 @@ const TopRestaurant = ({ topRestaurantData }) => {
   // console.log("slide", slide, "max", max, "itemsPerView", itemsPerView,totalItems > 0);
   // console.log(slide,"itemsPerView",itemsPerView,"max",max ,"s",window.screen.width === 768);
 
-
-  const navigateRestaurantPage = () =>{
-
-  }
+  const navigateRestaurantPage = () => {};
   return (
     <>
       <div className="flex justify-between items-center mb-[16px]">
@@ -49,8 +46,8 @@ const TopRestaurant = ({ topRestaurantData }) => {
           {header.title}
         </h2>
 
-        <div className={'hidden md:flex items-center'}>
-        <button
+        <div className={"hidden md:flex items-center"}>
+          <button
             className="bg-[#e2e2e7] w-[30px] h-[30px] rounded-full mx-2 flex items-center justify-center disabled:opacity-50 "
             onClick={handlePrev}
             disabled={slide <= 0}
@@ -80,7 +77,12 @@ const TopRestaurant = ({ topRestaurantData }) => {
               style={{ transform: `translateX(-${slide * 100}%)` }}
               onClick={navigateRestaurantPage}
             >
-            <Link to={`/${each.info.areaName}/${each.info.name}/${each.info.id}`} > <RestaurantCard data={each} /> </Link>
+              <Link
+                to={`/${each.info.areaName}/${each.info.name}/${each.info.id}`}
+              >
+                {" "}
+                <RestaurantCard data={each} />{" "}
+              </Link>
             </div>
           ))}
         </div>

@@ -26,7 +26,7 @@ const RestaurantsOnline = ({ onlineRestaurantData, title }) => {
               <RestaurantCard data={each} />
             </Link>
           ))}
-        </div>    
+        </div>
       )}
 
       <hr className="my-4 md:my-10 border-[#f2f2f3] border-[1px]" />

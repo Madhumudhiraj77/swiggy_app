@@ -5,11 +5,11 @@ import { IoHelpBuoyOutline } from "react-icons/io5";
 import { TfiBag } from "react-icons/tfi";
 
 const NAV_ITEMS = [
-  { icon: <TfiBag />, name: "Swiggy Corporate", path: "/" },
-  { icon: <FiSearch />, name: "Search",path: "/search" },
-  { icon: <BiSolidOffer />, name: "Offers", sup: "New" },
+  { icon: <TfiBag />, name: "Home", path: "/" },
+  { icon: <FiSearch />, name: "Search", path: "/search" },
+  { icon: <BiSolidOffer />, name: "Offers", sup: "New", path: "/offers" },
   { icon: <IoHelpBuoyOutline />, name: "Help", path: "/support" },
-  { icon: <FaRegUser />, name: "Madhu",path:'/profile' },
+  { icon: <FaRegUser />, name: "Madhu", path: "/profile" },
   { icon: <FiShoppingCart />, name: "Cart", path: "/cart" },
 ];
 
